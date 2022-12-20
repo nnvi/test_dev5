@@ -1,0 +1,401 @@
+openapi: 3.0.0
+info:
+  title: Tripie API
+  version: 0.0.1
+  description: "API Documentation for Tripie App"
+servers:
+  - description: Tripie Server
+    url: http://localhost:8000/
+tags:
+  - name: Member
+    description: Contain every operation about Member Resource
+    
+paths:
+  /register:
+    post:
+      operationId: register
+      tags:
+      - Member
+      requestBody:
+        $ref: "#/components/requestBodies/RegisterRequest"
+      responses:
+        "201":
+          $ref: "#/components/responses/RegisterResponse"
+        "401":
+          $ref: "#/components/responses/FailedRegisterResponse"
+          
+  /login:
+    post:
+      operationId: Login
+      tags:
+      - Member
+      requestBody:
+        $ref: "#/components/requestBodies/LoginRequest"
+      responses:
+        "201":
+          $ref: "#/components/responses/LoginResponse"
+        "401":
+          $ref: "#/components/responses/WrongPasswordResponse"
+        "404":
+          $ref: "#/components/responses/AccountUndefinedResponse"
+          
+  /api/v1/whoami:
+    get:
+      operationId: getData
+      tags:
+        - Member
+      parameters:
+        - in: header
+          name: x-access-token
+          schema:
+            type: string
+            format: jwt
+      responses:
+        "201":
+          $ref: "#/components/responses/WhoAmIResponse"
+        "401":
+          $ref: "#/components/responses/UnauthorizedResponse"
+          
+  /user/{id}/update:
+    put:
+      operationId: Update Data User
+      tags:
+        - Member
+      parameters:
+        - in: path
+          name: id
+          description: The id of User
+          required: true
+          schema:
+            type: number
+            example: 1
+      requestBody:
+        $ref: "#/components/requestBodies/UpdateUserRequest"
+      responses:
+        "201":
+          $ref: "#/components/responses/UpdateUserResponse"
+        "422":
+          $ref: "#/components/responses/FailedUpdateUserResponse"
+          
+  /user/{id}:
+    get:
+      operationId: Get User By Id
+      tags:
+        - Member
+      parameters:
+        - in: path
+          name: id
+          description: The id of User
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        "200":
+          $ref: "#/components/responses/GetUserByIdResponse"
+        "422":
+          $ref: "#/components/responses/FailedGetUserByIdResponse"
+  
+  /user:
+    get:
+      operationId: Get List User
+      tags:
+        - Member
+      responses:
+        "200":
+          $ref: "#/components/responses/GetAllUserResponse"
+        "401":
+          $ref: "#/components/responses/ForbiddenResponse"
+        "422":
+          $ref: "#/components/responses/UnauthorizedResponse"
+          
+components:
+  requestBodies:
+    RegisterRequest:
+      description: Regis For User
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "Admin"
+              email:
+                type: string
+                example: "admin@gmail.com"
+              password:
+                type: string
+                example: "admin123"
+    LoginRequest:
+      description: Login For User
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                example: "admin@gmail.com"
+              password:
+                type: string
+                example: "admin"
+    
+    UpdateUserRequest:
+      description: update user
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Name:
+                type: string
+                example: "member"
+              Email:
+                type: string
+                example: "member@gmail.com"
+              Foto:
+                type: string
+                example: "photo_profile-1669839389892-158264130.jpg"
+              Address:
+                type: string
+                example: "California Street"
+              Phone_Number:
+                type: string
+                example: "081239xxxxxx"
+              
+            
+  responses:
+    LoginResponse:
+        description: Response when success login User.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                  example: 1
+                Email:
+                  type: string
+                  example: "member@gmail.com"
+                token:
+                  type: string
+                  example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiRW1haWwiOiJhZG1pbkB0cmlwaWUuY29tIiwiY3JlYXRlZEF0IjoiMjAyMi0xMS0zMFQxNDowNzo0OC45MjZaIiwidXBkYXRlZEF0IjoiMjAyMi0xMS0zMFQxNDowNzo0OC45MjZaIiwiaWF0IjoxNjY5ODQyOTMwLCJleHAiOjE2Njk4NDY1MzB9.cyKEBVKxBGhVpiM_5Hw29JEjLVGPuYk7h2wF7oEzAnQ"
+                createdAt:
+                  type: string
+                  example: "2022-11-30T14:07:48.926Z"
+                updatedAt:
+                  type: string
+                  example: "2022-11-30T14:07:48.926Z"
+                  
+    WhoAmIResponse:
+        description: Response when success checking who am i.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "OK"
+                data:
+                  $ref: "#/components/schemas/User"
+                  
+    WrongPasswordResponse:
+        description: Response when user password is wrong.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: "Password Salah!"
+                  
+    AccountUndefinedResponse:
+        description: Response when user undefined.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: "Akun Tidak Ditemukan!"
+                  
+    RegisterResponse:
+        description: Response when success Register User.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: OK
+                data:
+                  $ref: "#/components/schemas/User"
+    
+    GetUserByIdResponse:
+        description: Response when success Get User By Id.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: OK
+                data:
+                  $ref: "#/components/schemas/User"
+    
+    FailedGetUserByIdResponse:
+        description: Response when failed Get User By Id.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "No Data"
+                message:
+                  type: string
+                  example: "Update Data Failed!"
+            
+    FailedRegisterResponse:
+      description: Response when failed register member
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: FAIL
+              message:
+                type: string
+                example: "Failed to register member"
+                
+    UpdateUserResponse:
+      description: Response when success update user by id.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "SUCCESS"
+              data:
+                type: number
+                example: 1
+    
+    FailedUpdateUserResponse:
+      description: Response when failed update user by id.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "FAIL"
+              message:
+                type: string
+                example: "Data is undefined!"
+                
+    ForbiddenResponse:
+      description: Response when accessing protected endpoint with access but sufficient access
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "FAIL"
+              message:
+                type: string
+                example: "Forbidden"
+    UnauthorizedResponse:
+      description: Response when accessing protected endpoint without access
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: FAIL
+              message:
+                type: string
+                example: "Unauthorized"
+                
+    GetUserResponse:
+      description: Response when success get user data.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: OK
+              data:
+                $ref: "#/components/schemas/User"
+    
+    GetAllUserResponse:
+      description: Response when success get user data.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                example: "OK"
+              data:
+                $ref: "#/components/schemas/User"
+              meta:
+                type: number
+                example: 1
+                
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        Name:
+          type: string
+          example: "Admin"
+        Email:
+          type: string
+          example: "admin@gmail.com"
+        Encrypted_Password:
+          type: string
+          example: "$2a$10$X7V.FfeIM09h57xISUivxuyaQ3UmjXQcUL.Y6QcgL3icAar5PF4jm"
+        Role:
+          type: string
+          example: "admin"
+        Foto:
+          type: string
+          example: "default.jpg"
+        Address:
+          type: string
+          example: "California Street"
+        Phone_Number:
+          type: string
+          example: "081234xxxxxx"
+        createdAt:
+          type: string
+          example: "2022-11-30 21:07:48.926+07"
+        updatedAt:
+          type: string
+          example: "2022-11-30 21:07:48.926+07"
