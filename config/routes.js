@@ -35,10 +35,11 @@ apiRouter.get('/user/:id', controllers.api.v1.authController.show)
 //yang bisa diakses user//
 apiRouter.post('/search-ticket', controllers.api.v1.schedController.filterSchedule),
 apiRouter.post('/booking-ticket', controllers.api.v1.bookingController.addBooking)
+apiRouter.post('/bookingTicket', controllers.api.v1.bookingController.addBookingAndro)
 apiRouter.post('/add-ticket', controllers.api.v1.ticketController.CreateTicket)
 apiRouter.get('/ticket', controllers.api.v1.ticketController.DisplayTicket)
 apiRouter.get('/history', controllers.api.v1.bookingController.DisplayBooking)
-apiRouter.post('/airport', controllers.api.v1.airportController.AddAirportList)
+apiRouter.post('/airport', controllers.api.v1.airportController.AddAirportList) //ga jadi pake
 apiRouter.get('/get-airport', controllers.api.v1.airportController.ShowAirportList)
 
 

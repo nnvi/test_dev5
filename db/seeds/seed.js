@@ -18,6 +18,7 @@ module.exports = {
       Name: 'admin',
       Encrypted_Password: "$2a$10$X7V.FfeIM09h57xISUivxuyaQ3UmjXQcUL.Y6QcgL3icAar5PF4jm",
       Role : "Admin",
+      Foto: "../../uploads/user.png",
       Address: "Jalan Timbul Tenggelam",
       Phone_Number: "081234567890",
       Email: "admin@tripie.com",

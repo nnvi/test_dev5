@@ -18,6 +18,9 @@ module.exports = {
       City: {
         type: Sequelize.STRING
       },
+      Foto:{
+        type : Sequelize.STRING
+      },
       Description: {
         type: Sequelize.STRING
       },

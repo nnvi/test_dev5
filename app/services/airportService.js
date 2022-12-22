@@ -15,4 +15,14 @@ module.exports={
             throw err;
         }
     },
+    async findAirport(Code){
+        try{
+            const check = await airportRepository.findAirportbyId(Code);
+            return{
+                check
+            }
+        }catch(err){
+            throw err
+        }
+    }
 }

@@ -9,14 +9,6 @@ module.exports={
                     status: "SUCCESS",
                     message: "Berhasil Menambahkan Data",
                     data: schedule
-                    // Origin_Airport : schedule.Origin_Airport,
-                    // Destination_Airport: schedule.Destination_Airport,
-                    // Plane_class: schedule.Plane_class,
-                    // Airline_Name: schedule.Airline_Name,
-                    // Price: schedule.Price,
-                    // flight_Date: schedule.flight_Date,
-                    // Departure_Hour: schedule.Departure_Hour,
-                    // Arrival_Hour: schedule.Arrival_Hour
                 })
             }else{
                 res.status(400).json({

@@ -6,5 +6,8 @@ module.exports={
     },
     listAirport(){
         return Airport_List.findAll()
+    },
+    findAirportbyId(Code){
+        return Airport_List.findAll({where: {Airport_Code : Code}})
     }
 }
