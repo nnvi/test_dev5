@@ -9,29 +9,57 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Origin_Airport: {
+      origin_code :{
+        allowNull: false,
         type: Sequelize.STRING
       },
-      Destination_Airport: {
+      origin_name :{
+        allowNull: false,
         type: Sequelize.STRING
       },
-      Plane_class: {
+      origin_city :{
+        allowNull: false,
         type: Sequelize.STRING
       },
-      Airline_Name: {
+      destination_code:{
+        allowNull: false,
         type: Sequelize.STRING
       },
-      Price: {
-        type: Sequelize.INTEGER
+      destination_name :{
+        allowNull: false,
+        type: Sequelize.STRING
       },
-      flight_Date: {
+      destination_city :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      plane_class :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      flight_date :{
+        allowNull: false,
         type: Sequelize.DATE
       },
-      Departure_Hour: {
+      airline_name :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      departure_hour :{
+        allowNull: false,
         type: Sequelize.TIME
       },
-      Arrival_Hour: {
+      arrival_hour : {
+        allowNull: false,
         type: Sequelize.TIME
+      },
+      price :{
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      capacity : {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

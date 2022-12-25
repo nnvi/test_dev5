@@ -1,7 +1,7 @@
 const scheduleRepository = require("../repositories/scheduleRepository")
 
 module.exports={
-    CreateSchedule(requestBody){
+    async CreateSchedule(requestBody){
         return scheduleRepository.createSchedule(requestBody)
     },
     async FindAllSchedule(){
@@ -14,17 +14,19 @@ module.exports={
             throw err;
         }
     },
+    async findByPK(id){
+        return scheduleRepository.findByPK(id)
+    },
     async findschedule(requestBody){
         try{
             const filter = await scheduleRepository.findSchedule(requestBody)
-            if (filter ==""|| filter == null || filter== undefined ){
+            if(filter == null || filter == undefined || filter == ""){
                 return{
-                    data : "Tidak ada Schedule yang cocok"
+                    status: "Fail",
+                    message : "Data tidak ditemukan"
                 }
             }else{
-                return{
-                    data : filter
-                }
+                return filter
             }
         }catch(err){
             throw err

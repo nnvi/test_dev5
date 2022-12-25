@@ -11,10 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Ticket,{
-        foreignKey:'booking_id',
-        as: 'tickets'
-      }),
       this.belongsTo(models.User, {
         foreignKey: 'user_id',
         as: 'users'
@@ -27,12 +23,22 @@ module.exports = (sequelize, DataTypes) => {
   }
   Booking.init({
     user_id: DataTypes.INTEGER,
-    Total_Passenger: DataTypes.INTEGER,
-    Plane_Class: DataTypes.STRING,
-    Origin_Airport: DataTypes.STRING,
-    Destination_Airport: DataTypes.STRING,
-    Ticket_Date: DataTypes.DATE,
-    schedule_id: DataTypes.INTEGER
+    schedule_id : DataTypes.INTEGER,
+    origin_code : DataTypes.STRING,
+    origin_name : DataTypes.STRING,
+    origin_city : DataTypes.STRING,
+    destination_code: DataTypes.STRING,
+    destination_name : DataTypes.STRING,
+    destination_city : DataTypes.STRING,
+    plane_class : DataTypes.STRING,
+    total_passenger : DataTypes.INTEGER,
+    flight_date : DataTypes.DATE,
+    airline_name : DataTypes.STRING,
+    departure_hour : DataTypes.TIME,
+    arrival_hour : DataTypes.TIME,
+    price : DataTypes.INTEGER,
+    passenger_name : DataTypes.STRING,
+    phone_number: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Booking',

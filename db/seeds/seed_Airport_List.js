@@ -18,7 +18,7 @@ module.exports = {
       Airport_Code:'CGK',
       Airport_Name:'Soekarno-Hatta International Airport',
       City:'Jakarta',
-      Foto:"../../uploads/airplane.png",
+      Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979480/cnhzdoy5neiwuwaqpbqa.png",
       Description:'Indonesian airport',
       createdAt: new Date(),
       updatedAt: new Date()
@@ -26,7 +26,7 @@ module.exports = {
         Airport_Code:'DPS',
         Airport_Name:'Ngurah Rai (Bali) International Airport',
         City:'Denpasar',
-        Foto:"../../uploads/airplane1.jpg",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979561/g1xent6rkdloekrv5vrl.webp",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -34,7 +34,7 @@ module.exports = {
         Airport_Code:'SUB',
         Airport_Name:'Juanda International Airport',
         City:'Surabaya',
-        Foto:"../../uploads/airplane.png",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979480/cnhzdoy5neiwuwaqpbqa.png",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -42,7 +42,7 @@ module.exports = {
         Airport_Code:'UPG',
         Airport_Name:'Hasanuddin International Airport',
         City:'Ujung Pandang',
-        Foto:"../../uploads/airplane1.jpg",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979561/g1xent6rkdloekrv5vrl.webp",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -50,7 +50,7 @@ module.exports = {
         Airport_Code:'DJJ',
         Airport_Name:'Sentani International Airport',
         City:'Jayapura',
-        Foto:"../../uploads/airplane.png",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979480/cnhzdoy5neiwuwaqpbqa.png",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -58,7 +58,7 @@ module.exports = {
         Airport_Code:'SOQ',
         Airport_Name:'Dominique Edward Osok Airport',
         City:'Sorong',
-        Foto:"../../uploads/airplane1.jpg",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979561/g1xent6rkdloekrv5vrl.webp",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -66,7 +66,7 @@ module.exports = {
         Airport_Code:'PKU',
         Airport_Name:'Sultan Syarif Kasim Ii (Simpang Tiga) Airport',
         City:'Pekanbaru',
-        Foto:"../../uploads/airplane.png",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979480/cnhzdoy5neiwuwaqpbqa.png",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -74,7 +74,7 @@ module.exports = {
         Airport_Code:'BDO',
         Airport_Name:'Husein Sastranegara International Airport',
         City:'Bandung',
-        Foto:"../../uploads/airplane1.jpg",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979561/g1xent6rkdloekrv5vrl.webp",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -82,7 +82,7 @@ module.exports = {
         Airport_Code:'PLM',
         Airport_Name:'Sultan Mahmud Badaruddin II Airport',
         City:'Palembang',
-        Foto:"../../uploads/airplane.png",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979480/cnhzdoy5neiwuwaqpbqa.png",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -90,7 +90,7 @@ module.exports = {
         Airport_Code:'LOP',
         Airport_Name:'Lombok International Airport',
         City:'Mataram',
-        Foto:"../../uploads/airplane1.jpg",
+        Foto:"http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979561/g1xent6rkdloekrv5vrl.webp",
         Description:'Indonesian airport',
         createdAt: new Date(),
         updatedAt: new Date()

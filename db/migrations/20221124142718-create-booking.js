@@ -10,25 +10,71 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      Total_Passenger: {
+      origin_code :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      origin_name :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      origin_city :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      destination_code:{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      destination_name :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      destination_city :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      plane_class :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      total_passenger:{
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      Plane_Class: {
-        type: Sequelize.STRING
-      },
-      Origin_Airport: {
-        type: Sequelize.STRING
-      },
-      Destination_Airport: {
-        type: Sequelize.STRING
-      },
-      Ticket_Date: {
+      flight_date :{
+        allowNull: false,
         type: Sequelize.DATE
+      },
+      airline_name :{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      departure_hour :{
+        allowNull: false,
+        type: Sequelize.TIME
+      },
+      arrival_hour : {
+        allowNull: false,
+        type: Sequelize.TIME
+      },
+      price :{
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       schedule_id: {
         type: Sequelize.INTEGER
+      },
+      passenger_name:{
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      phone_number:{
+        allowNull: false,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

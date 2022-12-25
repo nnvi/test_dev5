@@ -18,14 +18,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Schedule.init({
-    Origin_Airport: DataTypes.STRING,
-    Destination_Airport: DataTypes.STRING,
-    Plane_class: DataTypes.STRING,
-    Airline_Name: DataTypes.STRING,
-    Price: DataTypes.INTEGER,
-    flight_Date: DataTypes.DATE,
-    Departure_Hour: DataTypes.TIME,
-    Arrival_Hour: DataTypes.TIME
+    origin_code : DataTypes.STRING,
+    origin_name : DataTypes.STRING,
+    origin_city : DataTypes.STRING,
+    destination_code: DataTypes.STRING,
+    destination_name : DataTypes.STRING,
+    destination_city : DataTypes.STRING,
+    plane_class : DataTypes.STRING,
+    flight_date : DataTypes.DATE,
+    airline_name : DataTypes.STRING,
+    departure_hour : DataTypes.TIME,
+    arrival_hour : DataTypes.TIME,
+    price : DataTypes.INTEGER,
+    capacity : DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Schedule',

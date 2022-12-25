@@ -2,6 +2,7 @@ const bycript = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const userService = require("../../../services/userService");
 const salt =10
+const cloudinary = require('../../../../config/cloudinary')
 
 function encryptPassword(password) {
   return new Promise((resolve, reject) => {
@@ -60,6 +61,8 @@ module.exports = {
             const token = createToken({
                 id: user.id,
                 Email: user.Email,
+                Name: user.Name,
+                Foto: user.Foto,
                 createdAt: user.createdAt,
                 updatedAt: user.updatedAt
             });
@@ -137,7 +140,7 @@ module.exports = {
                 const Email = req.body.email;
                 const Role = "Member";
                 const Encrypted_Password = await encryptPassword(req.body.password);
-                const Foto = 'default.jpg';
+                const Foto = 'http://res.cloudinary.com/dsx8iumjv/image/upload/v1671979323/fd74vuebdwive0danoe0.png';
                 const Address = '';
                 const Phone_Number = '';
                 const user = await userService.create({Name, Encrypted_Password, Role, Email, Foto, Address, Phone_Number});
@@ -214,31 +217,76 @@ module.exports = {
         }
     },
 
+    async uploadProfilePhoto(req, res, next){
+        if(req.file != undefined){
+            const fileBase64 = req.file.buffer.toString("base64")
+            const file = `data:${req.file.mimetype};base64,${fileBase64}`
+    
+            cloudinary.uploader.upload(file, (err, result) => {
+                if(!!err){
+                    console.log(err)
+                    return res.status(400).json({
+                        status: "ERROR",
+                        message: 'Gagal Upload File!'
+                    })
+                }
+    
+                foto = result.url
+                next()
+            })
+        }else{
+            foto = req.user.Foto
+            next()
+        }
+    },
+
+    async getUserById(req, res, next){
+        try{
+            const user = await userService.findByPk(req.params.id);
+            if(!user){
+                res.status(404).json({
+                    status: "FAIL",
+                    message: "User Tidak Ditemukan"
+                });
+                return;
+            }
+
+            req.user = user;
+            next()
+            
+        }catch(err){
+            res.status(401).json({
+                status: "ERROR",
+                message: err.message
+            })
+        }
+    },
+
     async updateUser(req, res){
         try{
-            const user = await userService.update(req.params.id, req.body);
-            if(req.body.password && req.file){
-                const Encrypted_Password = await encryptPassword(req.body.password);
-                res.status(201).json({
-                    status: "SUCCESS",
-                    data: user,
-                    Name: req.body.name,
-                    Email: req.body.email,
-                    Encrypted_Password: Encrypted_Password,
-                    Foto: req.file.filename,
-                    Address: req.body.address,
-                    Phone_Number: req.body.phone_number
-                })
+            req.body.Foto = foto
+            const isPasswordCorrect = await checkPassword(
+                req.user.Encrypted_Password, req.body.Encrypted_Password
+            );
+            if(!isPasswordCorrect) {
+                req.body.Encrypted_Password = await encryptPassword(req.body.Encrypted_Password)
             }else{
+                req.body.Encrypted_Password = req.user.Encrypted_Password
+            }
+            const user = await userService.update(req.params.id, req.body);
+            if(user != 0){
+                const userUpdated = await userService.findByPk(req.params.id)
                 res.status(201).json({
                     status: "SUCCESS",
-                    data: user,
-                    Name: req.body.name,
-                    Email: req.body.email,
-                    Encrypted_Password: user.Encrypted_Password,
-                    Foto: user.Foto,
-                    Address: req.body.address,
-                    Phone_Number: req.body.phone_number,
+                    message: "Data Berhasil Diubah",
+                    data: [{
+                        Name: userUpdated.Name,
+                        Email: userUpdated.Email,
+                        Encrypted_Password: userUpdated.Encrypted_Password,
+                        Foto: userUpdated.Foto,
+                        Address: userUpdated.Address,
+                        Phone_Number: userUpdated.Phone_Number
+                    }]
                 })
             }
         }catch(err){
@@ -252,12 +300,21 @@ module.exports = {
     async show(req, res){
         try{
             const user = await userService.findByPk(req.params.id);
-            res.status(200).json({
-                data : user
-            })
+            if(user != null){
+                res.status(200).json({
+                    status: "OK",
+                    messsage: "Data Berhasil Ditemukan",
+                    data : user
+                })
+            }else{
+                res.status(404).json({
+                    status: "FAIL",
+                    messsage: "Data Tidak Ditemukan"
+                })
+            }
         }catch(err){
             res.status(422).json({
-                status: "No Data",
+                status: "ERROR",
                 message: err.message
             })
         }

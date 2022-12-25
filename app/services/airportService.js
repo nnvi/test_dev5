@@ -8,19 +8,15 @@ module.exports={
     async   ListAirport(){
         try{
             const airport = await airportRepository.listAirport();
-            return {
-                airport : airport
-            }
+            return airport
         }catch(err){
             throw err;
         }
     },
-    async findAirport(Code){
+    async findAirport(name){
         try{
-            const check = await airportRepository.findAirportbyId(Code);
-            return{
-                check
-            }
+            const check = await airportRepository.findAirportbyName(name);
+            return {check}
         }catch(err){
             throw err
         }
