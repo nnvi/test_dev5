@@ -45,8 +45,15 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      flight_type:{
+        allowNull : false,
+        type: Sequelize.STRING
+      },
       flight_date :{
         allowNull: false,
+        type: Sequelize.DATE
+      },
+      flight_back_date:{
         type: Sequelize.DATE
       },
       airline_name :{
