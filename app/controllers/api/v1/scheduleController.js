@@ -4,7 +4,7 @@ const scheduleService = require("../../../services/scheduleService")
 module.exports={
     async AddSchedule(req,res){
         try{
-            if(req.body.origin_name && req.body.destination_name && req.body.plane_class && req.body.price && req.body.flight_date && req.body.departure_hour && req.body.arrival_hour){
+            if(req.body.origin_name && req.body.destination_name && req.body.plane_class && req.body.price && req.body.flight_date && req.body.departure_hour && req.body.arrival_hour && req.body.capacity){
                 const origin_airport = await airportService.findAirport(req.body.origin_name)
                 const destination_airport = await airportService.findAirport(req.body.destination_name)
                 const tambah ={
@@ -19,7 +19,8 @@ module.exports={
                     airline_name : "Tripie Airline",
                     departure_hour : req.body.departure_hour,
                     arrival_hour : req.body.arrival_hour,
-                    price : req.body.price
+                    price : req.body.price,
+                    capacity : req.body.capacity
                 }
                 const schedule = await scheduleService.CreateSchedule(tambah)
                 return res.status(200).json({
